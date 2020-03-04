@@ -10,6 +10,11 @@ let output = document.getElementById('output');
 let actions = document.getElementById('actions');
 
 btn.addEventListener('click', function(){
+  enviar();
+});
+
+
+function enviar(){
   var msgtemp = message.value;
   message.value = "";
   if(username.value == ""){
@@ -22,8 +27,17 @@ btn.addEventListener('click', function(){
   }else{
     alert("no has escrito ningun mensaje!!");
   }
-});
+}
 
 socket.on('mensaje', function (data) {
   output.innerHTML += '<p><strong>'+data.username+'</strong>:'+data.message+'</p>'
 });
+
+
+//
+function EnviarAlPresionar(e) {
+    //See notes about 'which' and 'key'
+    if (e.keyCode == 13) {
+      enviar();
+    }
+}
